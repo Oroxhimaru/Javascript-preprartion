@@ -5,6 +5,7 @@ map() kya hota hai?
 map() ek array method hai jo:
 
 👉 Har element par function chalata hai
+
 👉 Aur naya array return karta hai (original ko change nahi karta)
 
 🔹 Basic Syntax
@@ -29,8 +30,11 @@ raha
 🔹 Important Points (Interview Gold ⚡)
 
 ✔ Always new array return karta hai
+
 ✔ Original array mutate nahi hota
+
 ✔ Loop internally chalta hai
+
 ✔ Har iteration me callback function call hota hai
 
 
@@ -851,7 +855,6 @@ bigArray.map(x => x * 2)
 arr.map().filter().map()
 
 👉 order matters (map first changes structure)
-
 
 
 
