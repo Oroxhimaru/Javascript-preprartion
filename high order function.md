@@ -96,6 +96,8 @@ function outer() {
     console.log("Hello");
   };
 }
+
+outer()(); //that's how we can access the inner function 
 ```
 
 👉 outer = Higher-Order Function
@@ -182,6 +184,124 @@ console.log(double(5));
 
 💀 VERY IMPORTANT QUESTION
 
+Chalo step by step simple Roman Urdu me 😄
+Yeh **closure + function returning function** ka famous question hai.
+
+---
+
+# 🔥 Code:
+
+```js id="hyy7fe"
+function multiplyBy(num) {
+  return function(value) {
+    return value * num;
+  };
+}
+```
+
+---
+
+# 🔍 Step 1:
+
+```js id="4o6l76"
+const double = multiplyBy(2);
+```
+
+👉 ab:
+
+```js id="1wtrmh"
+num = 2
+```
+
+👉 `multiplyBy` kya return kar raha hai?
+
+```js id="u1drpq"
+function(value) {
+  return value * num;
+}
+```
+
+👉 yani:
+
+```js id="cx9d5y"
+double = function(value) {
+  return value * 2;
+}
+```
+
+---
+
+# 🔥 IMPORTANT REALIZATION
+
+👉 `double` ab ek function ban gaya 😵
+
+---
+
+# 🔍 Step 2:
+
+```js id="dd6d4f"
+double(5)
+```
+
+👉 matlab:
+
+```js id="1xkrmf"
+value = 5
+```
+
+👉 return:
+
+```js id="7b1if0"
+5 * 2
+```
+
+👉 output:
+
+```id="g20vgh"
+10
+```
+
+---
+
+# 🧠 Tumhara main confusion:
+
+## “double(5) inner function ko kaise call kar raha?”
+
+👉 kyun ke:
+
+```js id="ahpqfr"
+const double = multiplyBy(2);
+```
+
+👉 `double` me inner function store ho gaya tha ✅
+
+---
+
+# 🔥 Visual:
+
+```js id="rmn2k7"
+multiplyBy(2)
+↓
+returns inner function
+↓
+stored in double
+```
+
+Ab:
+
+```js id="6k3xg9"
+double(5)
+```
+
+👉 actually inner function call ho raha hai
+
+---
+
+# ⚡ One-line yaad:
+
+👉 **Function return hua → variable me store hua → variable function ban gaya** 👍
+
+
 ---
 
 # 🔥 REAL POWER OF HOF
@@ -236,6 +356,97 @@ execute(greet());
 ```js id="jlwmwu"
 execute(greet);
 ```
+
+Yeh very important JS concept hai 👍
+
+---
+
+# 🔥 Difference: Passing vs Calling
+
+## ❌ Wrong:
+
+```js id="a1"
+execute(greet());
+```
+
+👉 yahan kya hua?
+
+✔ `greet()` **pehle execute ho gaya**
+✔ uska result `execute` ko gaya
+
+---
+
+## 🧠 Roman Urdu:
+
+👉 tum function **chala ke value bhej rahe ho**
+
+---
+
+# ✅ Correct:
+
+```js id="a2"
+execute(greet);
+```
+
+👉 yahan kya hua?
+
+✔ function **as a reference pass ho raha hai**
+✔ execute ke andar jaake call hoga
+
+---
+
+# 🔍 Simple Example:
+
+```js id="a3"
+function greet() {
+  return "Hello";
+}
+
+function execute(fn) {
+  console.log(fn());
+}
+```
+
+---
+
+## ✔ Correct call:
+
+```js id="a4"
+execute(greet);
+```
+
+👉 output:
+
+```
+Hello
+```
+
+---
+
+## ❌ Wrong call:
+
+```js id="a5"
+execute(greet());
+```
+
+👉 yahan:
+
+* `greet()` = "Hello"
+* so effectively:
+
+```js id="a6"
+execute("Hello");
+```
+
+👉 phir `fn()` error ho jayega 😵
+
+---
+
+# 🔥 One-line yaad:
+
+👉 **greet() = run function**
+👉 **greet = pass function (without running)** 👍
+
 
 ---
 
